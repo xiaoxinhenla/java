@@ -1,0 +1,13 @@
+** Collection接口
+- 表示不按添加顺序存放对象的集合，集合内元素可以重复，
+*** Set
+- 元素无序，不可重复的集合
+**** HashSet
+***** LinkedHashSet
+*** List
+- 元素有序，可以重复的集合
+**** Vector
+**** ArrayList
+**** LinkedList
+** Map 接口
+- 具有映射关系“key-value"的集合
