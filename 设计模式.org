@@ -1,0 +1,65 @@
+* 设计模式：
+** 单例设计模式
+*** 饿汉式
+#+BEGIN_SRC 
+    //1.私有化构造器
+//2.声明一个静态的私有的引用变量，指向一个仅有的对象
+//3.声明一个静态的公共的方法，通过调用这个方法获取仅有的对象
+public class single{
+    private static single onlyInstance=new single();
+    public static single getInstance(){
+	return onlyInstance;
+    }
+    private int count=100;
+    //私有化构造器，保证在外部类中无法直接使用new
+#+END_SRC
+
+*** 懒汉式
+#+BEGIN_SRC 
+public class single2{
+    //1.将构造器私有化
+    private single2(){
+	
+    }
+    //2。先声明类的引用
+    private static single2 instance=null;
+    //3.设置公共的方法来访问类的实例
+    public static single2 getInstance(){
+	if(instance==null){
+	    instance=new single2();
+	}
+	return instance;
+    }
+}
+#+END_SRC
+
+** 模板方法设计模式
+#+BEGIN_SRC 
+public abstract class Template{
+    public final void getTime(){
+	long start=System.currentTimeMillis();
+	code();
+	long end=System.currentTimeMillis();
+	System.out.println("执行时间: "+(end-start));
+    }
+    public abstract void code();
+}
+#+END_SRC
+
+** 工厂模式
+#+BEGIN_SRC 
+interface Work{
+   public void doWork();
+}
+interface IWorkFactory{
+    public Work getWork();
+}
+
+class WorkTest{
+    public void test(IWorkFactory factory){
+	Work work=factory.getWork();
+	work.doWork();
+    }
+}
+
+#+END_SRC
