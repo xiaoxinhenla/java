@@ -63,3 +63,38 @@ class WorkTest{
 }
 
 #+END_SRC
+
+** 代理模式
+*** 静态代理
+#+BEGIN_SRC 
+interface HouseBuilder{
+    public void buildHouse();
+}
+
+class Wanda implements HouseBuilder{
+    @Override
+    public void buildHouse(){
+	System.out.println("万达开始建房子了。。。");
+    }
+}
+
+public class StaticProxy implements HouseBuilder{
+    private HouseBuilder tar;
+    public StaticProxy(){
+	tar=new Wanda();
+    }
+    @Override
+    public void buildHouse(){
+	System.out.println("开始代理了。。。。");
+	tar.buildHouse();
+	System.out.println("代理结束，收取费用");
+    }
+}
+
+class testStaticProxy{
+    public static void main(String[] args){
+	HouseBuilder sp=new StaticProxy();
+	sp.buildHouse();
+    }
+}
+#+END_SRC
