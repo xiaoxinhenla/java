@@ -3,11 +3,32 @@
 *** Set
 - 元素无序，不可重复的集合
 **** HashSet
-***** LinkedHashSet
-*** List
+**** LinkedHashSet
+**** TreeSet
+
+*** List 接口
 - 元素有序，可以重复的集合
-**** Vector
+-已实现子类
+**** Vector (已过时)
 **** ArrayList
+- 底层由数组实现
 **** LinkedList
+- 底层由链表实现,经常用在增删操作比较多
 ** Map 接口
 - 具有映射关系“key-value"的集合
+- 实现类:HashMap,Hashtable,LinkedHashMap,TreeMap
+*** HashMap
+- 基于哈希表的map接口的实现,根据键的HashCode值存放数据,根据键可以直接获取他的值,具有很快的访问速度,遍历时,取得数据的顺序是完全随机的,
+-HashMap 最多允许一条记录的键为NULL,允许多条记录的值为NULL.非同步的
+*** Hashtable
+- 与HashMap类似,线程安全,支持线程的同步,不允许记录键或值为null,同事效率低
+
+*** ConcurrentHashMap
+- 线程安全,锁分离
+
+*** LinkedHashMap
+- LinkedHashMap保存了记录的插入顺序,比HashMap慢
+
+*** TreeMap
+- TreeMap实现SortMap接口，能够把它保存的记录根据键排序，默认是按键值的升序排序（自然顺序），也可以指定排序的比较器，当用Iterator遍历TreeMap时，得到的记录是排过序的。不允许key值为空，非同步的；
+

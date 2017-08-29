@@ -1,0 +1,67 @@
+命令行编译运行Java程序时，加载指定目录中的Jar包：
+解决方案一：
+[java] view plain copy    在CODE上查看代码片派生到我的代码片
+编译：javac -Djava.ext.dirs=./lib Test.java  或  javac -Djava.ext.dirs=D:/javacode/lib
+[html] view plain copy    在CODE上查看代码片派生到我的代码片
+运行：java -Djava.ext.dirs=./lib Test  
+【红色部分是要替换的内容】
+
+1、 ./lib  是指存放第三方jar文件的目录。
+>圆点：表示要编译运行的Java文件所在的当前目录
+
+2、 ./lib  也可以替换为带盘符的绝对路径：javac -Djava.ext.dirs=D:/javacode/lib
+
+
+解决方案二：
+[java] view plain copy
+<pre name="code" class="java">D:\javacode>javac -cp <span style="color:#cc0000;">d:/javacode/lib/jar包名称.jar; Test.java</span>  
+//或者
+[java] view plain copy
+D:\javacode>javac -cp <span style="color:#cc0000;">d:/javacode/lib/<span style="font-family: Arial, Helvetica, sans-serif;">jar包名称</span>.jar; Test.java</span>  
+[java] view plain copy
+D:\javacode>java -cp <span style="color:#cc0000;">./lib/jar包名称.jar; Test</span>  
+[java] view plain copy
+//或者  
+[java] view plain copy
+<pre name="code" class="java">D:\javacode>java -cp <span style="color:#cc0000;">./lib/jar包名称.jar; Test</span>  
+【红色部分是要替换的内容】
+
+运行程序时带有包：
+假设两个文件：
+    D:\workspace\com\A.java
+    D:\workspace\com\B.java
+两个文件都有：
+    package com;
+ 
+如何编译运行？
+   
+进入D:\workspace路径下，输入：
+ 
+    javac com\A.java com\B.java -d .
+    红色为源文件路径，蓝色为输出路径。
+ 
+则在生成两个文件：
+    D:\workspace\com\A.class
+    D:\workspace\com\B.class
+注意：
+    -d 后面是 空格 + 点
+点的意思是，在 .java 文件的根目录，为了方便也可以采用：
+    javac com\*.java -d .
+运行时，在包路径的根目录上运行，比如：在 D:\workspace 路径下，输入：
+    java com.A
+或
+    java com/A
+ 
+如果当前路径是 C:\ 或其他路径，那么
+编译：
+    javac -cp D:\workspace D:\workspace\com\*.java -d .
+运行：
+    java -cp D:\workspace com.A
+ 
+总结
+ 
+1、把包看成是源文件的一部分，而不是一个路径，这点很重要。
+2、如果不加 -cp 标志，则路径为环境变量和当前路径，如果加 -cp 标志，则路径为cp指定的路径和当前路径。
+参考
+
+http://blog.csdn.net/min954584739/article/details/70053224
