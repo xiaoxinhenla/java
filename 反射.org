@@ -1,0 +1,49 @@
+** 获取类实例的4种方法
+#+BEGIN_SRC 
+
+
+public class TestReflection{
+    public void test(){
+	try{
+	    //4.通过类加载器的方式
+	    String classname="Person";
+	    ClassLoader classloader=this.getClass().getClassLoader();
+	    Class clazz4 =classloader.loadClass(classname);
+	    System.out.println(clazz4.getName());
+	}catch(ClassNotFoundException e){
+	    System.out.println(e.getMessage());
+	}
+	
+    }
+    
+public static void main(String [] args){
+    Person p=new Person();
+    System.out.println(p);
+    System.out.println("------------------");
+    //反射方式一
+    //1.调用运行时类的本身
+    Class clazz=Person.class;
+    System.out.println(clazz.getName());
+    //2.通过运行时类的对象获取
+    Person p1=new Person();
+    Class clazz1=p.getClass();
+    System.out.println(clazz1.getName());
+    //3.通过class的静态方式获取，
+    try{
+	    String className="Person";
+	    Class clazz2=Class.forName(className);
+	    System.out.println(clazz2.getName());
+    }catch(ClassNotFoundException e){
+	System.out.println(e.getMessage());
+    }
+    TestReflection t=new TestReflection();
+    t.test();
+    
+    
+    
+
+	
+}
+
+}
+#+END_SRC
