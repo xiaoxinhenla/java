@@ -1,4 +1,4 @@
-** 连接数据库
+** Oracle连接数据库
 #+BEGIN_SRC 
 方法一：
 1.导入jar包
@@ -40,4 +40,13 @@ String driverClassName="oralce.jdbc.driver.OracleDriver";
 Class.forName(driverclassname));
 3.获取连接
 Connection connection=DriverManager.getConnection(url,user,password);
+#+END_SRC
+** mysql 数据库
+#+BEGIN_SRC 
+1.去官网下载jdbc驱动包 mysql-connector-java-5.1.44-bin.jar
+2.编译 javac -Djava.ext.dirs=lib test.java
+3.运行 java -Djava.ext.dirs=lib test
+注意:
+若编译运行有错误Wed Sep 06 17:22:36 CST 2017 WARN: Establishing SSL connection without server'
+则在properties中添加info.put("useSSL","false");即可
 #+END_SRC
