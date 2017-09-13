@@ -8,7 +8,7 @@
 ** domÊ÷
 [[./images/domÊ÷.jpg]]
 
-[[file:./images/domÊ÷.jpg]]
+[[;; file:./images/domÊ÷.jpg]]
 
 * xml
 ** ¸ñÊ½
