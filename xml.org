@@ -8,6 +8,8 @@
 ** domÊ÷
 [[./images/domÊ÷.jpg]]
 
+[[file:./images/domÊ÷.jpg]]
+
 * xml
 ** ¸ñÊ½
 #+BEGIN_SRC
