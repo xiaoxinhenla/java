@@ -6,9 +6,12 @@
 - 3. node有几个子类型:Element,text,attribute,RootElement,Comment,Namespace等
 
 ** dom树
+#+BEGIN_SRC 
+[[imgefilepath]]
+[[fiel: image_spath]]
+#+END_SRC
 [[./images/dom树.jpg]]
 
-[[;; file:./images/dom树.jpg]]
 
 * xml
 ** 格式
