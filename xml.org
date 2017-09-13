@@ -5,6 +5,8 @@
 - 2. node是相对tree这种数据结构而言的,tree就是node组成的
 - 3. node有几个子类型:Element,text,attribute,RootElement,Comment,Namespace等
 
+** dom树
+[[./images/dom树.jpg]]
 
 * xml
 ** 格式
