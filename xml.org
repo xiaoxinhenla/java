@@ -1,0 +1,46 @@
+* dome基础
+- org.w3c.dom
+** 元素(Element)和节点(Node)的区别
+- 1. 元素是一个小范围的定义,必须是含有完整的节点才是一个元素,例如<div></div>
+- 2. node是相对tree这种数据结构而言的,tree就是node组成的
+- 3. node有几个子类型:Element,text,attribute,RootElement,Comment,Namespace等
+
+
+* xml
+** 格式
+#+BEGIN_SRC
+ <?xml version="1.0" encoding="UTF-8"?>
+#+END_SRC
+
+* java解析xml
+#+BEGIN_SRC 
+@Test
+import java.io.File;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+
+import org.junit.Test;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+
+	public void testxml() throws Exception{
+		DocumentBuilderFactory df=DocumentBuilderFactory.newInstance(); //获取解析工厂
+		DocumentBuilder db=df.newDocumentBuilder();  //通过解析器工厂创建解析器
+		Document d=db.parse(new File("students.xml")); //加载xml文件
+		 NodeList nl=d.getElementsByTagName("student");
+		 for (int i = 0; i < nl.getLength(); i++) {
+			Element e=(Element) nl.item(i); //获取node,并将node强转成element
+			String id=e.getAttribute("id");
+			String name=e.getElementsByTagName("name").item(0).getTextContent();
+			String age=e.getElementsByTagName("age").item(0).getTextContent();
+			String gender=e.getElementsByTagName("gender").item(0).getTextContent();
+			student s=new student(Integer.parseInt(id),name,Integer.parseInt(age),gender);
+			System.out.println(s);
+			
+		}
+	}
+#+END_SRC
