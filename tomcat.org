@@ -1,0 +1,55 @@
+** web.xml 配置文件
+#+BEGIN_SRC 
+servlet
+ servlet-name
+ servlet-class
+ ulr-pattern
+  <servlet>
+  	<servlet-name>hello</servlet-name>
+  	<servlet-class>hello_tomcat.hello</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>hello</servlet-name>
+  	<url-pattern>/hello</url-pattern>
+  </servlet-mapping>
+  
+#+END_SRC
+
+** servlet
+*** servlet声明周期
+#+BEGIN_SRC 
+第一次访问servlet
+1.构造器
+2.init（）
+3.service（）
+第一次访问serlvet
+service（）
+当项目卸载时
+destroy（）
+
+
+#+END_SRC
+
+*** serlvetConfig
+- 1.获取servlet的别名
+#+BEGIN_SRC 
+getServletName();
+#+END_SRC
+
+** httpservlet
+#+BEGIN_SRC 
+-  HttpServletRequest
+ 功能：
+- 1.可以获取用户发送的请求
+- 2.可以获取项目名（主要用来设置绝对路径）
+String getContextPath()
+- 3.可以做位域对象在不同的web资源之间共享数据
+- 4. 请求的转发
+request.getRequesitDispatch(路径).forwar(request,response);
+- HttpServletResponse
+- 服务器发送给浏览器的响应报文
+1.向浏览器发送一个页面或者迎面片段
+response.getWriter().print();
+2. 重定向
+responsee.sendRedirect(路径)
+#+END_SRC
