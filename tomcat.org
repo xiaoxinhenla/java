@@ -53,3 +53,51 @@ response.getWriter().print();
 2. 重定向
 responsee.sendRedirect(路径)
 #+END_SRC
+
+** 编码问题
+*** 请求编码
+- 浏览器-> 服务器
+- 浏览器编码，服务器解码
+- 浏览器会自动使用网页的字符集来编码
+#+BEGIN_SRC 
+<meta charset=utf-8>
+#+END_SRC
+- 服务器的解码
+  - 1. post请求
+    - 手动设置字符集，默认iso8859-1
+#+BEGIN_SRC 
+request.setCharacterEncoding("utf-8");
+#+END_SRC
+  - 2. get请求
+ - tomcat自动解码,默认iso8859-1
+- 解决方案1：修改tomcat默认字符集
+#+BEGIN_SRC 
+<Connector URIEncoding=“UTF-8”></Connector>
+#+END_SRC
+*** 响应编码
+服务器->浏览器
+
+
+服务器编码，浏览器解码
+
+服务器默认编码iso8859-1
+- 设置response的编码字符集
+response.setCharacterEncoding("utf-8"); 这行可以省略
+- 浏览器默认用gb2312解码，还需要指定浏览器的解码字符集
+#+BEGIN_SRC 
+response.setheader("Content-type","text/html;charset=utf-8");
+response.setContentType("text/html;charset=utf-8");
+#+END_SRC
+- 当设置Content-type头的编码为utf-8，response自动设置utf-8
+
+** 路径问题
+*** 相对路径
+直接带资源名字
+*** 绝对路径
+#+BEGIN_SRC 
+绝对路径以/开头，代表服务器跟目录http://localhost:8080/
+#+END_SRC
+- 当路径由浏览器解析时，绝对路径相对于服务器的根目录
+  - http://ip:port/
+- 当路径由服务器解析时，绝对路径相对于项目的根目录
+  - http://ip:port/项目名/

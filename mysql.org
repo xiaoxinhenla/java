@@ -1,0 +1,11 @@
+** dbutils工具
+#+BEGIN_SRC 
+commons-dbutils-1.3.jar
+#+END_SRC
+** 数据库链接池
+*** c3p0
+#+BEGIN_SRC 
+c3p0-0.9.1.2.jar
+#+END_SRC
+*** dbcp
+
