@@ -1,0 +1,45 @@
+﻿- dbutils:
+- 1.jar:commons-dbutils-1.3.jar
+使用方法:
+1.创建QueryRunner的实例
+QueryRunner queryRunner = new QueryRunner()
+2.update方法(增删改)
+int	update(Connection conn, String sql, Object... params) 
+3.query方法(查询)
+<T> T query(Connection conn, String sql, ResultSetHandler<T> rsh)
+ResultSetHandler的实现类  
+        //1.ArrayHandler 将查询结果的第一行转换为一个数组对象返回
+        Object[] objs = runner.query("select * from account where name=?",new ArrayHandler() , "c");
+        System.out.println(objs);
+        //2.ArrayHandler 将查询结果的第一行转换为一个数组对象返回
+        List<Object[]> list = runner.query("select * from account",new ArrayListHandler() );
+        System.out.println(list);
+         
+        //3.BeanHandler,将查询结果的第一行转换为一个JavaBean对象返回
+        Account acc = runner.query("select * from account where name=?",new BeanHandler<Account>(Account.class) , "c");
+        System.out.println(acc);
+         
+        //4.BeanListHandler：将结果集中的每一行数据都封装到一个对应的JavaBean实例中，存放到List里。
+        List<Account> acclist = runner.query("select * from account",new BeanListHandler<Account>(Account.class));
+        System.out.println(acclist);
+         
+        //5.MapHandler：将结果集中的第一行数据封装到一个Map里，key是列名，value就是对应的值。
+        Map map = runner.query("select * from account",new MapHandler() );
+        System.out.println(map);
+         
+        //6.MapListHandler：将结果集中的每一行数据都封装到一个Map里，然后再存放到List
+        List<Map<String, Object>> maplist = runner.query("select * from account",new MapListHandler() );
+        System.out.println(maplist);
+         
+        //7.ColumnListHandler：将结果集中某一列的数据存放到List中。
+        List<Object> columnList = runner.query("select * from account",new ColumnListHandler(2) );
+        System.out.println(columnList);
+         
+        //8.KeyedHandler(name)：将结果集中的每一行数据都封装到一个Map里(List<Map>)，再把这些map再存到一个map里，其key为指定的列。
+        Map<Object, Map<String, Object>> keymap = runner.query("select * from account",new KeyedHandler("id") );
+        System.out.println(keymap);
+         
+        //9.ScalarHandler: 单值查询
+        //select count(*) from account;
+        Long count = (Long)runner.query("select count(*) from account",new ScalarHandler(1) );
+        System.out.println(count);
